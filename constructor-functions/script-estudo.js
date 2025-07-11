@@ -56,7 +56,25 @@ function Carro2(marca, preco) { //passamos os parametros
   this.marca = marca; //falamos q a propriedade recebe oq o parametro tem
   this.preco = preco;
 }
-
 const chevrolet = new Carro2('chevrolet', 4000); //setamos os argumentos do parametro pelo valor q queremos no novo objeto
 const jeep = new Carro2('jeep', 3000);
 
+
+// this Keyword
+// O this faz referência ao próprio objeto construído com a Constructor Function.
+function Carro3(marca, precoInicial){ //é como se fosse uma função normal, podendo fazer calculos entre outras coisas
+  //const taxa = 1.2; //criei uma varivel taxa que recebe 1.2
+  this.taxa = 1.2; //passei uma propiedade taxa agora
+  const precoFinal = precoInicial * this.taxa; //criei uma variavel preco final que recebe o parametro precoInicial * a taxa com this antes para referenciar ela
+  console.log(this); //o this faz referencia ao proprio objeto, até o momento desse console ele tinha somente a taxa
+  this.marca = marca; //no this eu passo a propriedade marca que recebe o parametro marca
+  console.log(this); //o this faz referencia ao proprio objeto, agora ele tem marca e a taxa
+  this.preco = precoFinal; //nesse this eu passo uma propriedade chamada preco que recebe o preco final q é calculado acima
+  console.log(this); //o this faz referencia ao proprio objeto, agora ele tem marca, precoFinal e a taxa
+}
+const citroen = new Carro3("Citroen", 5000); // aq eu falei que cintroen recebe o new de Carro3, ent ele chama a funcao e passa os argumentos pra ela, por isso ela dispara o console log tbm
+// Variáveis dentro da Constructor estão "protegidas".
+
+
+// Exemplo Real
+// Quando mudamos a propriedade seletor, o objeto Dom irá passar a selecionar o novo seletor em seus métodos.
