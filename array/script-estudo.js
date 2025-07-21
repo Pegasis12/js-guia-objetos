@@ -122,18 +122,28 @@ console.log(['Item1', 'Item2', 'Item3', 'Item4', "item5"].copyWithin(2, 0, 2)); 
 
 // [].fill()
 // [].fill(valor, inicio, final) preenche a array com o valor, do início até o fim.
-
+console.log(['Item1', 'Item2', 'Item3', 'Item4', 'Item5'].fill('Banana', 1, 3)); //substitui todos os itens por banana, segundo argumento da onde que eu quero q ele começe a substituir tudo, e  terceiro argumento onde ele deve parar
 
 
 
 
 // Métodos de Acesso [].concat()
 // Os métodos abaixo não modificam a array original, apenas retornam uma array modificada. [].concat() irá concatenar a array com o valor passado.
+const transporte1 = ['Barco', 'Aviao'];
+const transporte2 = ['Carro', 'Moto'];
+const transportes = transporte1.concat(transporte2); //concatena as duas arrays
+console.log(transportes); //['Barco', 'Aviao', 'Carro', 'Moto']
+const maisTransportes = [].concat(transporte1, transporte2, 'Van'); //passei uma array vazia, concatenei as duas e mais van ainda
+console.log(maisTransportes); //['Barco', 'Aviao', 'Carro', 'Moto', 'Van']
+
 
 
 
 // [].includes(), [].indexOf() e [].lastIndexOf()
 // [].includes(valor) verifica se a array possui o valor e retorna true ou false. [].indexOf(valor) verifica se a array possui o valor e retorna o index do primeiro valor na array. Já o [].lastIndexOf(valor) retorna o index do último.
+const linguagens = ['html', 'css', 'js', 'php', 'python', 'js'];
+console.log(linguagens.includes("css")); //includes retorna true ou false, nesse caso true por conter
+console.log(linguagens.indexOf("php")); //retorna o index do dado se encontrar ele no array
 
 
 
