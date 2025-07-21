@@ -34,7 +34,13 @@ let html = `<section>
             </section>`
 // Substitua section por ul e div com li,
 // utilizando split e join
+html = html.split("section").join("ul").split("div").join("li");
+console.log(html);
 
 const carros = ['Ford', 'Fiat', 'VW', 'Honda'];
 // Remova o último carro, mas antes de remover
 // salve a array original em outra variável
+const carrosCopia = carros.slice(); //copia
+carros.pop();
+console.log(carrosCopia);
+console.log(carros);
