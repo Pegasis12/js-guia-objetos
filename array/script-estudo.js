@@ -144,13 +144,33 @@ console.log(maisTransportes); //['Barco', 'Aviao', 'Carro', 'Moto', 'Van']
 const linguagens = ['html', 'css', 'js', 'php', 'python', 'js'];
 console.log(linguagens.includes("css")); //includes retorna true ou false, nesse caso true por conter
 console.log(linguagens.indexOf("php")); //retorna o index do dado se encontrar ele no array
-
+console.log(linguagens.indexOf("js")); //Se tiver mais de um dado repetido retorna o index do primeiro sempre
+console.log(linguagens.lastIndexOf("js")); //Se tiver mais de um dado repetido retorna o index do ULTIMO sempre
 
 
 // [].join()
 // [].join(separador) junta todos os valores da array e retorna uma string com eles. Se você passar um valor como parâmetro, este será utilizado durante a junção de cada item da array.
+let htmlString = '<h2>Título Principal</h2>';
+htmlString = htmlString.split('h2');
+htmlString = htmlString.join("h1");
+console.log(htmlString);
+
 
 
 
 // [].slice()
 // [].slice(inicio, final) retorna os itens da array começando pelo início e indo até o valor de final.
+const linguagens2 = ['html', 'css', 'js', 'php', 'python'];
+console.log(linguagens2.slice(2)); //retorna a arrray a partir do index 2, descarta os dois primeiros elementos
+console.log(linguagens2.slice(2,4)); //retorna a partir do dois e finaliza no 4
+console.log(linguagens2.slice()); //sem nada retorna a array inteira, otimo para clonar a array
+// CLONAGEM ERRADA
+const linguagemCopia = linguagens2;
+console.log(linguagens2);
+//mas se eu der um pop na array principal linguagens2 vai afetar na suposta copia
+console.log(linguagens2.pop());
+console.log(linguagemCopia); //veio sem o pyhon pois não é uma copia
+//FORMA CORRETA
+const linguagemCopiaCorreto = linguagens2.slice(); //forma correta de clonar a array
+console.log(linguagens2.pop()); //remove o php da array principal mas a copia manten tudo pois o pop foi nela e não na array principal 
+console.log(linguagemCopiaCorreto); //manten o php
