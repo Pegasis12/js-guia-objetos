@@ -161,32 +161,93 @@ console.log(maiorNumero); //retorna 60 por ser o maior de toda execução
 
 
 // Podemos retornar outros valores
+const videos = [
+  {
+    nome: 'HTML 1',
+    min: 15
+  },
+  {
+    nome: 'HTML 2',
+    min: 10
+  },
+  {
+    nome: 'CSS 1',
+    min: 20
+  },
+  {
+    nome: 'JS 1',
+    min: 25
+  },
+]
+const listaVideos = videos.reduce((acumulador, atual, index) => {
+  acumulador[index] = atual.nome; //a logica o atual carrega os itens do array, porem com .nome ele acessa o bojeto nome e retorna o nome do objeto, e atribui isso a posição do index de cada loop do acumulador q é um objeto vazio, e a cada loop ele vai pegar o nome do obejto e atribuir no objeto
+  return acumulador;
+}, {}); //passei no valor inicial do acumulador como um objeto vazio
+console.log(listaVideos);
 
 
 
 // Passo a passo Reduce
 // Passo a passo do método reduce criando um Objeto.
+// 1
+// videos.reduce(({}, {nome: 'HTML 1', min: 15}, 0) => {
+//   {}[0] = 'HTML 1';
+//   return {0: 'HTML 1'};
+// }, {})
+// // 2
+// videos.reduce(({0: 'HTML 1'}, {nome: 'HTML 2', min: 10}, 1) => {
+//   {0: 'HTML 1'}[1] = 'HTML 2';
+//   return {0: 'HTML 1', 1: 'HTML 2'};
+// }, {})
+// // 3
+// videos.reduce(({0: 'HTML 1', 1: 'HTML 2'}, {nome: 'CSS 1', min: 20}, 2) => {
+//   {0: 'HTML 1', 1: 'HTML 2'}[2] = 'CSS 1';
+//   return {0: 'HTML 1', 1: 'HTML 2', 2: 'CSS 1'};
+// }, {})
+// // 4
+// videos.reduce(({0: 'HTML 1', 1: 'HTML 2', 2: 'CSS 1'}, {nome: 'JS 1', min: 25}, 3) => {
+//   {0: 'HTML 1', 1: 'HTML 2', 2: 'CSS 1'}[3] = 'JS 1';
+//   return {0: 'HTML 1', 1: 'HTML 2', 2: 'CSS 1', 3: 'JS 1'};
+// }, {})
+
 
 
 
 
 // [].reduceRight()
 // Existe também o método [].reduceRight(), a diferença é que este começa a iterar da direita para a esquerda, enquanto o reduce itera da esquerda para a direita.
+// const frutas = ['Banana', 'Pêra', 'Uva'];
+// const frutasRight = frutas.reduceRight((acumulador, atual) => {
+//   return acumulador + ' ' + atual;
+// });
+// console.log(frutasRight);
 
 
 
 
 // [].some()
 // [].some(), se pelo menos um return da iteração for truthy, ele retorna true.
-
+const frutas = ['Banana', 'Pêra', 'Uva'];
+const temUva = frutas.some((item, index, array) => { //recebe os mesmos parametros que o foreach e o map
+  return item === "Uva"; //caso n tivesse um retorno iria retornar false por padrão
+});
+console.log(temUva); //some retorna true ou false, como o array tem uva ele retorna true
 
 
 
 
 // [].every()
 // [].every(), se todos os returns das iterações forem truthy, o método irá retornar true. Se pelo menos um for falsy, ele irá retornar false.
-
-
+const every = frutas.every((item, index, array) => { 
+  return item === "Uva"; //item vai passar em cada item do array e verificar se exsite uva, mas só um é uva true, o restante é false, ent o every vai retornar false, pois ele precisa que todos sejam true para retornar true
+});
+console.log(every);
+const numbers = [2, 6, 8, 9, 88, 101];
+const maiorQue3 = numbers.every((item) => item > 3);
+console.log(maiorQue3); //false pois every precisa que todos sejam verdadeiros para retornar true, e o 2 do array não é maior q 3
+// com some
+const emaioR3 = numbers.some((item) => item > 3);
+console.log(emaioR3); //retorna true, pois basta um ser verdadeiro para ele retornar true
 
 
 
@@ -200,6 +261,8 @@ console.log(maiorNumero); //retorna 60 por ser o maior de toda execução
 
 // [].filter()
 // [].filter(), retorna uma array com a lista de valores que durante a sua iteração retornaram um valor truthy.
+
+
 
 
 
