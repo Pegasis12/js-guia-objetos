@@ -253,19 +253,46 @@ console.log(emaioR3); //retorna true, pois basta um ser verdadeiro para ele reto
 
 
 // [].find() e [].findIndex()
-// [].find(), retorna o valor atual da primeira iteração que retornar um valor truthy. Já o [].findIndex(), ao invés de retornar o valor, retorna o index deste valor na array.
-
+// [].find(), retorna o valor atual da primeira iteração que retornar um valor truthy. Já o [].findIndex(), ao invés de retornar o valor, retorna o index deste valor na array. O primeiro verdadeiro que encontrar ele para a funcao e retorna, caso tudo seja false ele retorna -1
+const verificaValor = frutas.find(item => item === "Uva"); //retorna o valor Uva se encontralo na array
+console.log(verificaValor); //Uva
+const valores = [20, 2, 3, 7, 99];
+const indexValores = valores.findIndex(item => item === 3);
+console.log(indexValores); //2 pois está no index 2
 
 
 
 
 // [].filter()
 // [].filter(), retorna uma array com a lista de valores que durante a sua iteração retornaram um valor truthy.
-
-
-
+const valoresFrutas = ['Banana', undefined, null, '', 'Uva', 0, 'Maçã'];
+const arrayFrutas = valoresFrutas.filter(item => item); //vai retornar apenas valores verdadeiros e montar uma array, false n entra no array
+console.log(arrayFrutas); //['Banana', 'Uva', 'Maçã']
+const numeros3 = [6, 43, 22, 88, 101, 29];
+const buscaMaior45 = numeros3.filter(x => x > 45); //todos que forem maior q 45 vai atribuir no array
+console.log(buscaMaior45); // [88, 101]
 
 
 
 
 // Filter em Objetos
+const aulasVideos = [
+  {
+    nome: 'HTML 1',
+    min: 15
+  },
+  {
+    nome: 'HTML 2',
+    min: 10
+  },
+  {
+    nome: 'CSS 1',
+    min: 20
+  },
+  {
+    nome: 'JS 1',
+    min: 25
+  },
+]
+const verificarAulasVideos = aulasVideos.filter(item => item.min > 15); //vai atribuir a nova array apenas as aulas q tem o min maior q 15
+console.log(verificarAulasVideos); //[{nome: 'CSS 1', min: 20}, {nome: 'JS 1', min: 25}]
