@@ -160,19 +160,33 @@ const lis = document.querySelectorAll("li");
 const filtro = Array.prototype.filter.bind(lis, (item) => {
   return item.classList.contains("ativo");
 }); 
-//console.log(filtro); //por ser bind retorna a funcao filter "filter() { [native code] }"
-console.log(filtro()); //forma certa de executar o bild
-
-
-
-
-
+console.log(filtro); //por ser bind retorna a funcao filter "filter() { [native code] }"
+console.log(filtro()); //forma certa de executar o bild, coloca () a frente da variavel
+// muito util para reutilizar funcoes
+const $ = document.querySelectorAll.bind(document); //alem do argumento document posso passar outro argumento tipo o (document, "li"); que vai fazer referencia diretamente a li sendo necessario so executar
+console.log($); // querySelectorAll() { [native code] }
+console.log($("li")); //NodeList(4) [li.ativao, li.ativo, li.ativo, li] 
 
 
 
 // Argumentos e Bind
 // Não precisamos passar todos os argumentos no momento do bind, podemos passar os mesmos na nova função no momento da execução da mesma.
+const carrao = {
+  marca: 'Ford',
+  ano: 2018,
+  acelerar: function(aceleracao, tempo) {
+    return `${this.marca} acelerou ${aceleracao} em ${tempo}`;
+  }
+}
 
+const honda = {
+  marca: "honda"
+}
+
+const acelerarHonda = carrao.acelerar.bind(honda); //com bind troquei o metodo acelerar pra fazer referencia no novo objeto honda, posso passar os argumentos do metodo acelerar aq tbm, porem estou fazendo isso abaixo na execução da variavel que agora é uma funcao bind
+console.log(acelerarHonda(100, 20)) //executando a variavel que agora é um bind
+
+console.log(carrao);
 
 
 
@@ -181,3 +195,11 @@ console.log(filtro()); //forma certa de executar o bild
 
 // Argumentos Comuns
 // Podemos passar argumentos padrões para uma função e retornar uma nova função.
+function imc(altura, peso){
+  return peso / (altura * altura);
+}
+// execucao normal
+console.log(imc(1.73, 60)); //minha altura por exemplo se eu querer chamar varias vezes voou ter q pasar o argumento sempre
+
+const imc173 = imc.bind(null, 1.73); //agora o argumento de 1.80 fica fixo nessa variavel, null pq faz referencia a nada alem da propria funcao
+console.log(imc173(60)) //executando a variavel passando somente o argumento e peso pois a altura esta fixa pois foi assada no bind
