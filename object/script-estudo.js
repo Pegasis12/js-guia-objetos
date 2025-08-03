@@ -94,6 +94,7 @@ const moto2 = {
 }
 Object.defineProperties(moto2, {
   rodas: { 
+    enumerable: false,
     // quando tenho get e set n posso ter value
     // //atravez desses metodos consigo manipular o retorno padrão
     get(){ //quando do moto.capacete por exemplo quem pega o valor é esse metodo get
@@ -104,7 +105,7 @@ Object.defineProperties(moto2, {
     }
   }
 });
-moto2.rodas = 7; //consigo manipular caso writable esteja true
+//moto2.rodas = 7; //consigo manipular caso writable esteja true
 console.log(moto2);
 
 
@@ -115,7 +116,11 @@ console.log(moto2);
 
 
 // Object.getOwnPropertyDescriptors(obj)
-// Lista todos os métodos e propriedades de um objeto, com as suas devidas configurações.
+// Lista todos os métodos e propriedades de um objeto, com as suas devidas configurações. Retorna um objeto, consiguimos colocar em uma variavel
+Object.getOwnPropertyDescriptors(Array); // Lista com métodos e propriedades e Array
+Object.getOwnPropertyDescriptors(Array.prototype);// Lista com métodos e propriedades do protótipo de Array clicando neles consigo ver as configs de configurable, enumerable, value etc
+Object.getOwnPropertyDescriptor(moto2); //puxa as config do nosso moto2
+Object.getOwnPropertyDescriptor(window, 'innerHeight');// Puxa de uma única propriedade
 
 
 
@@ -124,6 +129,10 @@ console.log(moto2);
 
 // Object.keys(obj), Object.values(obj) Object.entries(obj)
 // Object.keys(obj) retorna uma array com as chaves de todas as propriedades diretas e enumeráveis do objeto. Object.values(obj) retorna uma array com os valores do objeto. Object.entries(obj) retorna uma array com array's contendo a chave e o valor.
+Object.keys(moto2);// ['capacete', 'rodas'] aparece todos pois enumerable é true, caso fosse false rodas n iria aparecer pois dentro dela foi configurada como false o enumerable, capacete esta setado padrão por isso aparece
+Object.values(moto2); //true pois capacete esta setado como true, pega oq tem dentro de cada propriedade
+Object.entries(moto2); //mostra tanto keys que é a chave como values q é o valor como uma array
+
 
 
 
@@ -131,29 +140,45 @@ console.log(moto2);
 
 
 // Object.getOwnPropertyNames(obj)
-// Retorna uma array com todas as propriedades diretas do objeto (não retorna as do protótipo).
+// Retorna uma array com todas as propriedades diretas do objeto (não retorna as do protótipo) somente se colocar .prototype. Ele puxa os não enumarables tbm
+Object.getOwnPropertyNames(Array); // ['length', 'name', 'prototype', 'isArray', 'from', 'fromAsync', 'of']
+Object.getOwnPropertyNames(Array.prototype); //(40) ['length', 'constructor', 'at', 'concat', 'copyWithin', 'fill', 'find', 'findIndex', 'findLast', 'findLastIndex',...]
+Object.getOwnPropertyNames(moto2); //mesmo com enumarable false aq aparece todos, pois getOwnPropertyNames pega tudo
 
 
 
 
 
 
-
-// Copiar
 // Object.getPrototypeOf() e Object.is()
 // Object.getPrototypeOf(), retorna o protótipo do objeto. Object.is(obj1, obj2) verifica se os objetos são iguais e retorna true ou false.
-
-
-
+const frutas = ["Banana"];
+console.log(Object.getPrototypeOf(frutas));//[at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …] mostra os metodos e propriedades do prototype do objeto construtor de frutas que é Array
+const frutas2 = ["Banana"];
+console.log(Object.is(frutas, frutas2)); //da false pois mesmo tendo o mesmo cotneudo as duas são diferentes
+// agora se for assim
+const novaFruta = frutas;
+console.log(Object.is(frutas, novaFruta)); //por novaFruta fazer referencia a frutas ele retorna true, pois ambos são os mesmos
 
 
 
 
 // Object.freeze(), Object.seal(), Object.preventExtensions()
 // Object.freeze() impede qualquer mudança nas propriedades. Object.seal() previne a adição de novas propriedades e impede que as atuais sejam deletadas. Object.preventExtensions() previne a adição de novas propriedades.
-
-
-
+const carros = {
+  marca: 'Ford',
+  ano: 2018,
+}
+Object.seal(carros); //impede que crie novas propriedades, a linha abaixo n vai funcionar
+carros.portas = 4;
+delete carros.marca; //n consigo deletear pois o seal tbm impede ja com Object.preventExtensions() consigo deletar mas n consigo atribuir novas propriedades, a diferenca de seal e preventExtensions() é so o delete
+Object.freeze(carros); //congelei o objeto, na proxima linha em que atribuo honda ele n vai atribuir, impede qualquer mudança nas propriedades
+carros.marca = "Honda";
+console.log(carros);
+//conseguimos fazer verificacoes tbm exemplo
+console.log(Object.isFrozen(carros)); // true pois congelei carros
+console.log(Object.isSealed(carros)); // true pois setei seal tbm
+console.log(Object.isExtensible(carros)); // false pois n setei o preventExtensions()
 
 
 
