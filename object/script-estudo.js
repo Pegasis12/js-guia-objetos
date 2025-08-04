@@ -183,8 +183,18 @@ console.log(Object.isExtensible(carros)); // false pois n setei o preventExtensi
 
 
 
+
+
 // Propriedades e Métodos do Protótipo
 // Já que tudo em JavaScript é objeto, as propriedades abaixo estão disponíveis em todos os objetos criados a partir de funções construtoras. {}.constructor retorna a função construtora do objeto.
+const frutas3 = ['Banana', 'Uva'];
+frutas3.constructor; // Array pois Array é a funcao construtora de frutas 3, se eu colocar frutas3.constructor.prototype; me retorna os metodos e propriedades do prototipo de array tbm
+
+const frase = 'Isso é uma String';
+frase.constructor; // String pois a funcao construtora de frase é a String
+
+
+
 
 
 
@@ -192,6 +202,9 @@ console.log(Object.isExtensible(carros)); // false pois n setei o preventExtensi
 
 // {}.hasOwnProperty('prop') e {}.propertyIsEnumerable('prop')
 // Verifica se possui a propriedade e retorna true. A propriedade deve ser direta do objeto e não do protótipo. O {}.propertyIsEnumerable() verifica se a propriedade é enumerável.
+console.log(frutas3.hasOwnProperty('map')); // false pois map é criado pelo Array.prototype e não frutas
+console.log(Array.prototype.propertyIsEnumerable('map')); //false pq n é enumarable
+
 
 
 
@@ -200,6 +213,8 @@ console.log(Object.isExtensible(carros)); // false pois n setei o preventExtensi
 
 // {}.isPrototypeOf(valor)
 // Verifica se é o protótipo do valor passado.
+const frutas4 = ['Banana', 'Uva'];
+console.log(Array.prototype.isPrototypeOf(frutas4)); // true pois array prototype é prototipo de frutas
 
 
 
@@ -208,3 +223,17 @@ console.log(Object.isExtensible(carros)); // false pois n setei o preventExtensi
 
 // {}.toString()
 // Retorna o tipo do objeto. O problema é toString() ser uma função dos protótipos de Array, String e mais. Por isso é comum utilizarmos a função direto do Object.prototype.toString.call(valor).
+const frutas5 = ['Banana', 'Uva'];
+const frase2 = "Olá mundo";
+const somar = function (a, b){
+  return a + b;
+};
+const carros2 = {
+  marca: "Ford",
+}
+console.log(frutas5.toString()); //Banana,Uva transforma a array em string e coloca uma virgula entre os dados
+console.log(frase2.toString()); //Olá mundo retorna ela mesmo por ja ser uma string
+console.log(somar.toString()); //retorna a funcao como uma string "function (a, b){return a + b;}"
+console.log(carros2.toString()); //[object Object] retorna uma string dizendo que é um objeto do tipo objeto
+//uma forma de verificarmos o tipo de dado é usando typeoff, porem o typeoff retorna de uma array por exemplo object, ent ele n é preciso, o array tem o metodo chamado isarray, porem antes desse metodoexistir se utilizava a forma mais grosseira que é basicamente o tostring, no exemplo do objeto ele retornou object object, porem ele so faz isso pra objeto, para verificarmos outros dados como array podemos passar o Object.prototype.toString.call e fazer referencia ao novo this que queremos
+console.log(Object.prototype.toString.call(frutas5)) //[object Array] certinho pois é um objeto do tipo array
