@@ -1,10 +1,5 @@
 # JS Guia de Objetos — Estudos de JavaScript (Origamid)
 
-[![Status](https://img.shields.io/badge/status-em%20andamento-green?style=for-the-badge)]()
-[![Curso](https://img.shields.io/badge/Curso-Origamid-blue?style=for-the-badge)](https://www.origamid.com)
-[![Linguagem](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript)]()
-[![License](https://img.shields.io/badge/Licença-Livre-lightgrey?style=for-the-badge)]()
-
 ---
 
 ## Sobre o Projeto
