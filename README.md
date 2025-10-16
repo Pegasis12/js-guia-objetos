@@ -27,7 +27,7 @@ O objetivo é dominar os conceitos fundamentais que sustentam a linguagem — **
 
 ---
 
-## 🧩 Conceitos Abordados
+## Conceitos Abordados
 
 - Estrutura e comportamento de **Objetos** no JavaScript  
 - Diferença entre **tipos primitivos e referências**  
